@@ -29,11 +29,15 @@ export default function Home() {
       <button disabled={pending} onClick={onClick}>
         Add Hotel
       </button>
-      {pending && <p>Pendinged</p>}
+      <br />
+      <br />
+      {pending && <p>Pending...</p>}
       {data.map((hotel) => {
         return (
           <div key={hotel._id}>
             <p>{hotel.name}</p>
+            <p>{hotel.authorName}</p>
+            <br />
           </div>
         );
       })}

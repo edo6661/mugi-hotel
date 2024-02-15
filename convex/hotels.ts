@@ -8,11 +8,7 @@ export const get = query({
     if (!identity) {
       throw new Error("Unauthorized");
     }
-    const hotels = await ctx.db
-      .query("hotel")
-      .withIndex("by_authorId", (q) => q.eq("authorId", identity.subject))
-      .order("desc")
-      .collect();
+    const hotels = await ctx.db.query("hotel").order("desc").collect();
     return hotels;
   },
 });

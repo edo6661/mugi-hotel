@@ -1,5 +1,5 @@
 "use client";
-import { UserButton } from "@clerk/nextjs";
+import { SignInButton, UserButton } from "@clerk/nextjs";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import useApiMutation from "@/hooks/useApiMutation";
@@ -11,27 +11,31 @@ export default function Home() {
     // ! kalo punya args
     // {}
   );
+  const user = useQuery(api.user.get);
+
   if (data === undefined) {
     return <div>loading data...</div>;
   }
 
   const onClick = () => {
-    console.log("sukses");
+    if (!user) {
+      alert("login dlu puh klo mw add aq");
+    }
     mutate({
-      name: "test hotel-2",
+      name: "test hotel-3 asyu tenan",
     });
   };
 
   return (
     <section>
-      <p>authenticated</p>
-      <UserButton />
+      {user ? <UserButton /> : <SignInButton>Login</SignInButton>}
+      <br />
       <button disabled={pending} onClick={onClick}>
         Add Hotel
       </button>
       <br />
       <br />
-      {pending && <p>Pending...</p>}
+      {user && pending && <p>Pending...</p>}
       {data.map((hotel) => {
         return (
           <div key={hotel._id}>

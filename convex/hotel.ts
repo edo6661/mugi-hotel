@@ -11,13 +11,14 @@ export const create = mutation({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
-      throw new Error(" Not Authenticated");
+      return;
+      // throw new Error(" Not Authenticated");
     }
     const randomImage = images[Math.floor(Math.random()) * images.length];
     const hotel = await ctx.db.insert("hotel", {
       name: args.name,
-      authorId: identity.subject,
-      authorName: identity.name!,
+      authorId: identity?.subject!,
+      authorName: identity?.name!,
       imageUrl: randomImage,
     });
     return hotel;

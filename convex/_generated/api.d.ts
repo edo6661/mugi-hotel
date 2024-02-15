@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as hotel from "../hotel.js";
 import type * as hotels from "../hotels.js";
+import type * as user from "../user.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -28,6 +29,7 @@ import type * as hotels from "../hotels.js";
 declare const fullApi: ApiFromModules<{
   hotel: typeof hotel;
   hotels: typeof hotels;
+  user: typeof user;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

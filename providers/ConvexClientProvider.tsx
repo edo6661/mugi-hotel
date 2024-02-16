@@ -8,15 +8,21 @@ interface ConvexClientProviderProps {
   children: React.ReactNode;
 }
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL!;
+const CONVEXURL = process.env.NEXT_PUBLIC_CONVEX_URL!;
 
-const convex = new ConvexReactClient(convexUrl);
+const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+const convex = new ConvexReactClient(CONVEXURL);
+
+if (!PUBLISHABLE_KEY || !CONVEXURL) {
+  throw new Error("Missing Publishable Key & Convex URL ");
+}
 
 export default function ConvexClientProvider({
   children,
 }: ConvexClientProviderProps) {
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
         {/* <Authenticated>{children}</Authenticated> */}
         {children}

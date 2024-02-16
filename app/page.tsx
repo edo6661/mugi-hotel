@@ -3,11 +3,15 @@ import { SignInButton, UserButton } from "@clerk/nextjs";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import useApiMutation from "@/hooks/useApiMutation";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { BedDouble, Calendar, Search } from "lucide-react";
+import HomeCard from "./_components/HomeCard";
 
 export default function Home() {
   const { mutate, pending } = useApiMutation(api.hotel.create);
   const data = useQuery(
-    api.hotels.get
+    api.hotels.getHotels
     // ! kalo punya args
     // {}
   );
@@ -26,13 +30,52 @@ export default function Home() {
     });
   };
 
+  const mockHomestay = [
+    {
+      icon: <BedDouble className=" " />,
+      title: "Homestay",
+    },
+    {
+      icon: <BedDouble className=" " />,
+      title: "Homestay",
+    },
+    {
+      icon: <BedDouble className=" " />,
+      title: "Homestay",
+    },
+    {
+      icon: <BedDouble className=" " />,
+      title: "Homestay",
+    },
+  ];
+
   return (
-    <section>
+    <section className="relative grid place-items-center">
+      <Image
+        width={1440}
+        height={392}
+        alt="hero-img"
+        src="/hero.jpeg"
+        className="  absolute object-cover h-[396px] w-full -z-10 top-0"
+      />
+      <article className="inner-section">
+        <h3>MELIHAT DUNIA DENGAN HARGA LEBIH MURAH</h3>
+        <div className="container-dest">
+          <div className="inner-dest">
+            {mockHomestay.map((item, i) => (
+              <div key={i} className="bed-homestay">
+                <BedDouble />
+                <p>Homestay</p>
+              </div>
+            ))}
+          </div>
+          <HomeCard />
+        </div>
+      </article>
       {user ? <UserButton /> : <SignInButton>Login</SignInButton>}
-      <br />
-      <button disabled={pending} onClick={onClick}>
+      <Button disabled={pending} onClick={onClick}>
         Add Hotel
-      </button>
+      </Button>
       <br />
       <br />
       {user && pending && <p>Pending...</p>}

@@ -11,6 +11,10 @@ export default defineSchema({
     .index("by_authorId", ["authorId"])
     .searchIndex("search_name", {
       searchField: "name",
-      filterFields: ["authorId"],
+      filterFields: ["_creationTime"],
+    })
+    .searchIndex("search_author", {
+      searchField: "authorName",
+      filterFields: ["_creationTime"],
     }),
 });

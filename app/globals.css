@@ -2,31 +2,149 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-  @apply bg-red-500;
-}
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+  :root {
+    @apply theme-transition;
+  }
+  body {
+    @apply text-foreground dark:bg-black bg-primaryWhite theme-transition;
+  }
+  input {
+    @apply bg-primaryGray rounded-xl text-black placeholder:italic;
+  }
+}
+@layer utilities {
+  .theme-transition {
+    --transition-duration: 0.5s;
+    transition: background-color var(--transition-duration),
+      color var(--transition-duration) linear !important;
+  }
+  .fl-itc {
+    @apply flex items-center;
+  }
+  .primary-btn {
+    @apply bg-primaryGray text-secondaryGray;
+  }
+  .primary-shadow {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    @apply dark:shadow-white dark:shadow-xl;
+  }
+}
+
+/* ! custom theme */
+@layer components {
+  .container-theme {
+    @apply w-[84px] h-[34px] rounded-full relative opacity-75 fl-itc p-2 justify-start transition-all dark:bg-black bg-primaryWhite  primary-shadow shadow-xl dark:shadow-none;
+  }
+  .container-theme[data-theme="dark"] {
+    @apply justify-end;
+  }
+}
+
+/* ! homepage */
+@layer components {
+  .hero {
+    @apply relative grid place-items-center;
+  }
+  .inner-section {
+    @apply pt-28 space-y-8  w-[1034px];
+  }
+  .inner-section > h3 {
+    @apply text-3xl font-bold text-white;
+  }
+  .container-dest {
+    @apply bg-primaryWhite mx-auto rounded-3xl w-full p-[74px] h-[344px]  relative;
+  }
+  .container-dest .inner-dest {
+    @apply bg-primaryGray py-4 px-16 absolute -top-8 rounded-xl fl-itc gap-8 left-1/2 -translate-x-1/2;
+  }
+  .bed-homestay {
+    @apply fl-itc gap-2 text-secondaryGray text-sm;
+  }
+  .input-dest {
+    @apply h-[72px] w-full pl-12;
+  }
+  .icon-dest {
+    @apply absolute left-3 text-secondaryGray;
+  }
+  .container-calendar,
+  .second-container-calender {
+    @apply bg-primaryGray flex-1  p-4 rounded-2xl;
+  }
+  .container-calendar {
+    @apply grid grid-cols-2;
+  }
+  .inner-calendar {
+    @apply flex flex-col gap-2 text-xs;
+  }
+  .second-container-calender {
+    @apply fl-itc gap-2;
+  }
 }

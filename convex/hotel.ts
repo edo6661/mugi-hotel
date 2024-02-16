@@ -12,7 +12,6 @@ export const create = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       return;
-      // throw new Error(" Not Authenticated");
     }
     const randomImage = images[Math.floor(Math.random()) * images.length];
     const hotel = await ctx.db.insert("hotel", {

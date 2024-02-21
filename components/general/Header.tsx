@@ -5,8 +5,8 @@ import CustomToggleTheme from "../ui/CustomToggleTheme";
 
 const Header = () => {
   return (
-    <header className=" py-4">
-      <nav className="container fl-itc justify-between">
+    <header className=" container py-4">
+      <nav className=" fl-itc justify-between">
         <h1 className=" text-4xl font-bold">YOUR BRAND</h1>
         <ul className=" fl-itc gap-8">
           <li>Penginapan</li>

@@ -77,7 +77,7 @@
     @apply text-foreground dark:bg-black bg-primaryWhite theme-transition;
   }
   input {
-    @apply bg-primaryGray rounded-xl text-black placeholder:italic;
+    @apply bg-primaryWhite text-black placeholder:italic;
   }
 }
 @layer utilities {
@@ -94,7 +94,13 @@
   }
   .primary-shadow {
     box-shadow: 0px 4px 4px 0px #00000040;
-    @apply dark:shadow-white dark:shadow-xl;
+    @apply dark:shadow-white dark:shadow-none;
+  }
+  .title {
+    @apply text-3xl font-semibold text-center;
+  }
+  .title-sm {
+    @apply text-xl font-medium;
   }
 }
 
@@ -111,38 +117,53 @@
 /* ! homepage */
 @layer components {
   .hero {
-    @apply relative grid place-items-center;
+    @apply relative container;
   }
-  .inner-section {
-    @apply pt-28 space-y-8  w-[1034px];
+  .hero > img {
+    @apply absolute object-cover h-[424px]  -z-10 top-0 rounded-3xl;
   }
-  .inner-section > h3 {
-    @apply text-3xl font-bold text-white;
+  .hero > article {
+    @apply space-y-8;
+  }
+  .inner-hero {
+    @apply pt-28 space-y-8 pb-12  w-full mx-auto;
+  }
+  .inner-hero > h3 {
+    @apply title pb-6 text-primaryWhite;
   }
   .container-dest {
-    @apply bg-primaryWhite mx-auto rounded-3xl w-full p-[74px] h-[344px]  relative;
+    @apply bg-primaryClr rounded-3xl px-8 py-12 relative fl-itc flex-col justify-center w-fit mx-auto;
+  }
+  .container-dest > div {
+    @apply w-fit;
   }
   .container-dest .inner-dest {
-    @apply bg-primaryGray py-4 px-16 absolute -top-8 rounded-xl fl-itc gap-8 left-1/2 -translate-x-1/2;
+    @apply absolute -top-6 rounded-3xl fl-itc gap-8 left-1/2 -translate-x-1/2 w-full;
   }
-  .bed-homestay {
-    @apply fl-itc gap-2 text-secondaryGray text-sm;
+  .inner-dest {
+    @apply bg-primaryWhite h-[56px] w-[612px] relative text-secondaryGray;
+  }
+  .inner-dest > input {
+    @apply w-full h-full pl-12 rounded-3xl primary-shadow;
+  }
+  .container-menu {
+    @apply bg-primaryWhite py-2 grid grid-cols-4 rounded-3xl primary-shadow;
   }
   .input-dest {
-    @apply h-[72px] w-full pl-12;
+    @apply h-[72px] w-full pl-12 fl-itc primary-shadow;
   }
   .icon-dest {
     @apply absolute left-3 text-secondaryGray;
   }
   .container-calendar,
   .second-container-calender {
-    @apply bg-primaryGray flex-1  p-4 rounded-2xl;
+    @apply bg-primaryWhite flex-1  p-4 rounded-2xl;
   }
   .container-calendar {
     @apply grid grid-cols-2;
   }
   .inner-calendar {
-    @apply flex flex-col gap-2 text-xs;
+    @apply flex flex-col gap-1 text-xs;
   }
   .second-container-calender {
     @apply fl-itc gap-2;

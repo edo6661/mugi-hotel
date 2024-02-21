@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { BedDouble, Calendar, Search } from "lucide-react";
 import HomeCard from "./_components/HomeCard";
+import SearchHero from "./_components/SearchHero";
+import MockStar from "./_components/MockStar";
+import CardsHotels from "./_components/CardsHotels";
 
 export default function Home() {
   const { mutate, pending } = useApiMutation(api.hotel.create);
@@ -29,65 +32,30 @@ export default function Home() {
       name: "test hotel-3 asyu tenan",
     });
   };
-
-  const mockHomestay = [
-    {
-      icon: <BedDouble className=" " />,
-      title: "Homestay",
-    },
-    {
-      icon: <BedDouble className=" " />,
-      title: "Homestay",
-    },
-    {
-      icon: <BedDouble className=" " />,
-      title: "Homestay",
-    },
-    {
-      icon: <BedDouble className=" " />,
-      title: "Homestay",
-    },
-  ];
-
+  console.log(data);
   return (
-    <section className="relative grid place-items-center">
-      <Image
-        width={1440}
-        height={392}
-        alt="hero-img"
-        src="/hero.jpeg"
-        className="  absolute object-cover h-[396px] w-full -z-10 top-0"
-      />
-      <article className="inner-section">
-        <h3>MELIHAT DUNIA DENGAN HARGA LEBIH MURAH</h3>
+    <section className="hero">
+      <Image width={1440} height={392} alt="hero-img" src="/hero.jpeg" />
+      <article className="inner-hero">
+        <h3>SEE THE WORLD FOR LESS FIND YOUR DREAM VACATION SPOT</h3>
         <div className="container-dest">
-          <div className="inner-dest">
-            {mockHomestay.map((item, i) => (
-              <div key={i} className="bed-homestay">
-                <BedDouble />
-                <p>Homestay</p>
-              </div>
-            ))}
-          </div>
+          <SearchHero />
           <HomeCard />
         </div>
       </article>
-      {user ? <UserButton /> : <SignInButton>Login</SignInButton>}
-      <Button disabled={pending} onClick={onClick}>
-        Add Hotel
-      </Button>
-      <br />
-      <br />
-      {user && pending && <p>Pending...</p>}
-      {data.map((hotel) => {
-        return (
-          <div key={hotel._id}>
-            <p>{hotel.name}</p>
-            <p>{hotel.authorName}</p>
-            <br />
-          </div>
-        );
-      })}
+      <article className=" min-h-screen">
+        <h4 className="title text-secondaryGray ">
+          RECOMMENDED DESTINATION FOR YOU
+        </h4>
+        <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2">
+          {data.map((hotel) => (
+            <CardsHotels key={hotel._id} {...hotel} />
+          ))}
+        </div>
+        <div className="fl-itc justify-center py-4">
+          <Button className=" bg-primaryCyan">See More</Button>
+        </div>
+      </article>
     </section>
   );
 }

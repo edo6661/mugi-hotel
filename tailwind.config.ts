@@ -17,9 +17,12 @@ module.exports = {
     },
     extend: {
       colors: {
-        primaryWhite: "#FEFBF6",
+        primaryWhite: "#F1F1F1",
         primaryGray: "#D9D9D9",
         secondaryGray: "#565656",
+        primaryClr: "#E8E8E8",
+        secondaryClr: "#F1F1F1",
+        primaryCyan: "#5392F9",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -7,12 +7,17 @@ import { useEffect, useState } from "react";
 const CustomToggleTheme = () => {
   const { theme, setTheme } = useTheme();
   const [isDark, setIsDark] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsDark(theme === "dark");
   }, [theme]);
 
-  const el = (
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const el = isClient && (
     <label className="container-theme" data-theme={theme}>
       <motion.div
         className=" w-8 h-6 rounded-full "

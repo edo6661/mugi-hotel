@@ -117,7 +117,7 @@
 /* ! homepage */
 @layer components {
   .hero {
-    @apply relative container;
+    @apply relative container px-4;
   }
   .hero > img {
     @apply absolute object-cover h-[424px]  -z-10 top-0 rounded-3xl;

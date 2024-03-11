@@ -1,17 +1,14 @@
+import { logout } from "@/actions/logout";
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
 const FormLogout = () => {
+  const onLogout = () => logout();
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut({ redirectTo: "/auth" });
-      }}
-    >
-      <Button variant="destructive">Logout</Button>
-    </form>
+    <Button variant="destructive" onClick={onLogout}>
+      Logout
+    </Button>
   );
 };
 

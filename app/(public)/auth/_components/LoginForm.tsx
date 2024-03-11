@@ -13,13 +13,14 @@ import { Form } from "@/components/ui/form";
 import FormError from "@/components/general/FormError";
 import FormSuccess from "@/components/general/FormSuccess";
 import { login } from "@/actions/auth";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 const LoginForm = () => {
+  const { update } = useSession();
   const router = useRouter();
   const [response, setResponse] = useState({ error: "", success: "" });
   const [showTwoFactor, setShowTwoFactor] = useState(false);

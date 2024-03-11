@@ -1,15 +1,19 @@
+"use client";
 import React from "react";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { basicMotionProps, existVars } from "@/lib/motion";
+import useIsClient from "@/hooks/useIsClient";
 interface FormErrorProps {
   error: string;
 }
 const FormError = ({ error }: FormErrorProps) => {
+  const isClient = useIsClient();
+
   if (!error) return null;
   return (
     <AnimatePresence>
-      {error && (
+      {isClient && error && (
         <motion.div
           variants={existVars}
           {...basicMotionProps}
